@@ -1,0 +1,29 @@
+
+if(this.balanceFactor(root.rightChild && root.rightChild  ) > 0) {
+    console.log("Right Rotate " + root.rightChild.value)
+}
+
+if(root.rightChild  &&  this.balanceFactor(root.rightChild) > 0) {
+    console.log("Right Rotate " + root.rightChild.value)
+}
+
+การใช้ this.balanceFactor(root.rightChild) && root.rightChild แบบนี้ไม่ได้เนื่องจากลำดับของการตรวจสอบใน JavaScript (หรือ TypeScript) จะทำงานในลักษณะของการประเมินค่าจากซ้ายไปขวา (left to right) และการใช้ && จะทำให้ส่วนแรก (this.balanceFactor(root.rightChild)) ถูกตรวจสอบก่อน
+
+การทำงานของ &&:
+ในกรณีของ && ถ้าเงื่อนไขแรกเป็น false (หรือค่า falsy เช่น 0, null, undefined), จะไม่ประเมินค่าของเงื่อนไขที่สองเลย (short-circuiting) เพราะไม่จำเป็นต้องไปตรวจสอบเงื่อนไขที่สองต่อ
+ในกรณีนี้ ถ้า this.balanceFactor(root.rightChild) ผลลัพธ์เป็น 0 หรือ false (ค่าน้อยกว่า 0 หรือใหญ่กว่า 0 ก็อาจเป็นได้) ก็จะไม่เข้าไปตรวจสอบ root.rightChild อีก
+
+
+this.balanceFactor(root.rightChild) && root.rightChild
+ถ้า this.balanceFactor(root.rightChild) ผลลัพธ์เป็น 0 หรือค่าที่เป็น falsy (เช่น 0 หรือ null) ตัวแปร root.rightChild จะไม่ถูกตรวจสอบเลย แม้ว่า root.rightChild จะไม่เป็น null ก็ตาม เพราะการประเมินค่าจะหยุดลงทันทีในขั้นตอนแรก
+
+วิธีที่ถูกต้อง:
+คุณต้องตรวจสอบว่า root.rightChild ไม่เป็น null ก่อนแล้วค่อยใช้ this.balanceFactor(root.rightChild)
+
+ตัวอย่างที่ถูกต้อง:
+if (root.rightChild && this.balanceFactor(root.rightChild) > 0) {
+    console.log("Right Rotate " + root.rightChild.value);
+}
+ในที่นี้ การตรวจสอบ root.rightChild ก่อนช่วยให้มั่นใจว่า root.rightChild ไม่ใช่ null แล้วค่อยประเมินค่าของ this.balanceFactor(root.rightChild) ต่อไป
+สรุป:
+การที่คุณต้องการให้ root.rightChild อยู่ด้านหน้าไม่สามารถทำได้ในกรณีนี้ เพราะ && จะประเมินค่าซ้ายไปขวา และถ้าเงื่อนไขแรก (this.balanceFactor(root.rightChild)) เป็นค่าที่ falsy (เช่น 0), มันจะไม่ประเมินค่าของเงื่อนไขที่สองเลย จึงไม่สามารถใช้ลำดับนี้ได้

@@ -1,0 +1,54 @@
+BREADTH FIRST
+Level order
+
+DEPTH FIRST
+Traversal Pre-order    Root , Left  , Right
+Traversal in-order     Left , Root  , Right
+Traversal post-order   Left , Right , Root
+
+Recurion เอามาจัดการพวก Traversal
+ถ้าต้นไม้ที่ลึกมาก ๆ:
+ถ้าต้นไม้มีความลึกสูง อาจทำให้เกิดปัญหา stack overflow ได้
+การเรียก recursion จะใช้ stack frame สำหรับทุกโหนดที่อยู่ระหว่างการคำนวณ
+ทำไม Recursion เหมาะกับ Tree Traversal ?
+ต้นไม้มีโครงสร้างซ้ำในตัวมันเอง:
+
+เช่น ฝั่งซ้ายและขวาของโหนดสามารถมองว่าเป็นต้นไม้ย่อย (subtree) ได้
+ลำดับการเดินต้นไม้เหมาะกับการ "แบ่งปัญหา":
+
+ใช้ recursion เพื่อแบ่งปัญหาเป็นส่วนย่อย และจัดการทีละ subtree
+ลดความซับซ้อนของโค้ด:
+
+ถ้าเขียน traversal ด้วย loop (iterative) จะซับซ้อนกว่ามาก
+เพราะต้องใช้ stack เพื่อจำสถานะของโหนดที่ต้องกลับมา
+
+traverseLevelOrder หรือ Level Order Traversal คือกระบวนการเดินทาง (Traversal) 
+ผ่านโหนดของต้นไม้แบบ Breadth-First Search (BFS) โดยการเข้าถึงโหนดแต่ละระดับ (Level) 
+ของต้นไม้ทีละระดับ ไล่จากระดับบนสุด (Root) ลงมาระดับล่างสุด
+
+ลักษณะการทำงาน
+เริ่มจาก Root Node (ระดับ 0)
+เดินทางไปยังโหนดใน ระดับ 1 (ลูกของ Root)
+จากนั้นเดินทางไปยังโหนดใน ระดับ 2 และลึกลงไปเรื่อย ๆ จนกว่าจะถึงระดับล่างสุด (Leaf Nodes)
+
+        10
+       /  \
+      5    20
+     / \     
+    3   7
+
+ผลลัพธ์ของ Level Order Traversal
+ถ้าเราเดินทางในลำดับ Level Order:
+
+ระดับ 0: 10
+ระดับ 1: 5, 20
+ระดับ 2: 3, 7
+ผลลัพธ์รวม: [10, 5, 20, 3, 7]
+
+เปรียบเทียบกับ Traversal อื่น
+Traversal Type	ตัวอย่างผลลัพธ์	ลักษณะ
+
+Pre-order	[10, 5, 3, 7, 20]	Root → Left → Right
+In-order	[3, 5, 7, 10, 20]	Left → Root → Right
+Post-order	[3, 7, 5, 20, 10]	Left → Right → Root
+Level-order (BFS)	[10, 5, 20, 3, 7]	ระดับจากบนลงล่าง
