@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                      // กำหนด target เป็น ES6 หรือสูงกว่า
+      "lib": ["ES6", "DOM"],               // เพิ่มไลบรารี ES6 และ DOM
+      "module": "CommonJS",                // หรือใช้ ESNext ถ้าต้องการโมดูลที่ใหม่กว่า
+      "strict": true,                      // ใช้โหมดตรวจสอบข้อผิดพลาดที่เข้มงวด
+      "esModuleInterop": true,             // รองรับการนำเข้าโมดูลแบบ ES6
+      "skipLibCheck": true,                // ข้ามการตรวจสอบ type ของไฟล์ .d.ts
+      "forceConsistentCasingInFileNames": true, // ตรวจสอบชื่อไฟล์ให้ตรงกัน
+      "outDir": "./dist",                  // ระบุโฟลเดอร์ที่เก็บผลลัพธ์
+      "moduleResolution": "node",         // ใช้ module resolution แบบ Node.js
+      "resolveJsonModule": true,          // รองรับการ import ไฟล์ .json
+      "allowSyntheticDefaultImports": true // อนุญาต import ค่า default
+    },
+    "include": ["src/**/*"],               // ระบุโฟลเดอร์ที่ต้องการ compile
+    "exclude": ["node_modules", "dist"]    // ยกเว้นโฟลเดอร์ที่ไม่ต้องการ compile
+  }
+  
