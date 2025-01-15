@@ -119,7 +119,7 @@ class StringReverser {
     }
     private bracketsMatch2(chleft : string , chright : string) : boolean { 
        const matches : {[key : string] : string} = {
-            ')' : '(' ,']' : '[' , '{' : '}' , '<' : '>'
+           ')': '(', ']': '[', '}': '{', '>': '<' 
        }
        return matches[chright] === chleft;;
     }
@@ -162,3 +162,6 @@ console.log(result.isBalanced("({[()]})")); // true
 console.log(result.isBalanced("( [ ] { } )")); // true
 console.log(result.isBalanced("({[})]")); // false
 console.log(result.isBalancedReSecondFactoring("({[>)]")); // false
+console.log('new' , result.isBalancedReSecondFactoring("()[]{}")); // true
+
+
