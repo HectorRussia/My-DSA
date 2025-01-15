@@ -141,6 +141,12 @@ class StringReverser {
         // ถ้า stack ว่างแสดงว่าวงเล็บสมดุล
         return stack.length === 0;
     }
+    // Explain
+    // let stack: string[] = [];
+    // console.log(stack.length === 0); // true
+    // let stack: string[] = ['('];
+    // console.log(stack.length === 0); // false
+
 }
 
 // Reverser
